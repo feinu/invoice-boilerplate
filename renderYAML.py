@@ -8,7 +8,7 @@ companyfile = file('companies/muster.yml', 'r')
 company = yaml.load(companyfile)
 companyfile.close()
 
-clientfile = file('clients/muster.yml', 'r')
+clientfile = file('companies/muster/clients/muster.yml', 'r')
 client = yaml.load(clientfile)
 clientfile.close()
 
