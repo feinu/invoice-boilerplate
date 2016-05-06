@@ -1,0 +1,6 @@
+# Typography and layout
+seriffont: Hoefler Text
+sansfont: Liberation Sans
+fontsize: 10pt
+geometry: a4paper, left=43mm, right=43mm, top=51mm, bottom=17mm
+# letterhead: true # To include personalized letterheads
