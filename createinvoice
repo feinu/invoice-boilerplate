@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Reset POSIX variable incase getopts was used elsewhere
+OPTIND=1
+
+INFILE="details.yml"
+TEMPLATE="template.tex"
+OUTFILE="output.pdf"
+RENDERER="xelatex"
+
+while getopts "i:t:o:r:h" OPT; do
+  case "${OPT}" in
+    i)
+      INFILE=${OPTARG}
+      ;;
+    t)
+      TEMPLATE=${OPTARG}
+      ;;
+    o)
+      OUTFILE=${OPTARG}
+      ;;
+    r)
+      RENDERER=${OPTARG}
+      ;;
+    h)
+      echo 'Usage: createinvoice [-i <file>] [-o <file>] [-r <renderer>]'
+      echo '  -i  Input YAML file,    Default: details.yml'
+      echo '  -t  Template TEX file,  Default: template.tex'
+      echo '  -o  Output PDF file,    Default: output.pdf'
+      echo '  -r  Latex renderer,     Default: xelatex'
+      ;;
+  esac
+done
+
+# Sort out the getopts index stuff
+shift $((OPTIND-1))
+[ "$1" = "--" ] && shift
+
+pandoc ${INFILE} -o ${OUTFILE} --template=${TEMPLATE} --latex-engine=${RENDERER}
